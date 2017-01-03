@@ -35,4 +35,45 @@ public class Adresse {
 		return "Adresse [codePostal=" + codePostal + ", ville=" + ville
 				+ ", numeroVoie=" + numeroVoie + ", nomVoie=" + nomVoie + "]";
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + codePostal;
+		result = prime * result + ((nomVoie == null) ? 0 : nomVoie.hashCode());
+		result = prime * result + numeroVoie;
+		result = prime * result + ((ville == null) ? 0 : ville.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		//Ou obj est une adresse et rien d'autre
+		Adresse other = (Adresse) obj;
+		//Comparaison des différents attributs d'une adresse
+		if (codePostal != other.codePostal)
+			return false;
+		if (nomVoie == null) {
+			if (other.nomVoie != null)
+				return false;
+		} else if (!nomVoie.equals(other.nomVoie))
+			return false;
+		if (numeroVoie != other.numeroVoie)
+			return false;
+		if (ville == null) {
+			if (other.ville != null)
+				return false;
+		} else if (!ville.equals(other.ville))
+			return false;
+		//Et si rien n'est différent. C'est à dire que nous sommes face à deux adresses identiques
+		return true;
+	}
+	
 }
